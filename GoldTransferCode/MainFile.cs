@@ -107,9 +107,9 @@ public partial class MainFile : Node
 
             RunManager.Instance.NetService.SendMessage(new TransferMessage
             {
-                fromNetId = player.NetId,
-                toNetId = toPlayer.NetId,
-                amount = amount
+                FromNetId = player.NetId,
+                ToNetId = toPlayer.NetId,
+                Amount = amount
             });
     }
 
@@ -135,25 +135,25 @@ public partial class MainFile : Node
             {
                 return;
             }
-            Player? from = _playerCollection.GetPlayer(message.fromNetId);
-            Player? to = _playerCollection.GetPlayer(message.toNetId);
+            Player? from = _playerCollection.GetPlayer(message.FromNetId);
+            Player? to = _playerCollection.GetPlayer(message.ToNetId);
 
             if (from == null || to == null)
             {
                 return;
             }
 
-            from.Gold -= message.amount;
-            to.Gold += message.amount;
+            from.Gold -= message.Amount;
+            to.Gold += message.Amount;
             
             Logger.Info("Message sent to clients");
         }
 
         public struct TransferMessage : INetMessage
         {
-            public ulong fromNetId;
-            public ulong toNetId;
-            public int amount;
+            public ulong FromNetId;
+            public ulong ToNetId;
+            public int Amount;
             
             public bool ShouldBroadcast => true;
             public NetTransferMode Mode => NetTransferMode.Reliable;
@@ -162,21 +162,21 @@ public partial class MainFile : Node
 
             public void Serialize(PacketWriter writer)
             {
-                writer.WriteULong(fromNetId);
-                writer.WriteULong(toNetId);
-                writer.WriteInt(amount);
+                writer.WriteULong(FromNetId);
+                writer.WriteULong(ToNetId);
+                writer.WriteInt(Amount);
             }
 
             public void Deserialize(PacketReader reader)
             {
-                fromNetId = reader.ReadULong();
-                toNetId = reader.ReadULong();
-                amount = reader.ReadInt();
+                FromNetId = reader.ReadULong();
+                ToNetId = reader.ReadULong();
+                Amount = reader.ReadInt();
             }
 
             public override string ToString()
             {
-                return $"{fromNetId} transferred {amount} gold to {toNetId}";
+                return $"{FromNetId} transferred {Amount} gold to {ToNetId}";
             }
         }
     }
