@@ -1,0 +1,8 @@
+{
+  "GOLD_TRANSFER.SEND_TITLE": "Send Gold",
+  "GOLD_TRANSFER.SEND_DESCRIPTION": "Send gold to another player",
+  "GOLD_TRANSFER.SEND_BUTTON": "Send",
+  "GOLD_TRANSFER.SELECT_PLAYER": "Select player",
+  "GOLD_TRANSFER.PLAYER_NAME_AND_GOLD": "{playerName} ({amount} gold)",
+  "GOLD_TRANSFER.CANCEL": "Cancel"
+}
