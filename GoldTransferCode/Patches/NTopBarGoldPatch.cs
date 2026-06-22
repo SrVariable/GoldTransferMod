@@ -41,11 +41,11 @@ public class NTopBarGoldPatch
         List<Player> otherPlayers = player.RunState.Players
             .Where(p => !LocalContext.IsMe(p))
             .ToList();
-        CanvasLayer popup = NSelectPlayerPopup.Create(player, otherPlayers, toPlayer =>
+        CanvasLayer selectPlayerPopup = NSelectPlayerPopup.Create(player, otherPlayers, toPlayer =>
         {
-            // TODO(srvariable): Open amount popup
-            GoldTransferService.Transfer(player, toPlayer, 10);
+            CanvasLayer selectAmountPopup = NAmountPopup.Create(toPlayer, player.Gold, amount => GoldTransferService.Transfer(player, toPlayer, amount));
+            topBarGold.GetTree().Root.AddChild(selectAmountPopup);
         });
-        topBarGold.GetTree().Root.AddChild(popup);
+        topBarGold.GetTree().Root.AddChild(selectPlayerPopup);
     }
 }

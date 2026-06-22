@@ -67,11 +67,8 @@ public static class NSelectPlayerPopup
 
         foreach (Player p in otherPlayers)
         {
-            string playerName =
-                PlatformUtil.GetPlayerNameRaw(RunManager.Instance.NetService.Platform,
-                    p.NetId);
-            LocString locString = new LocString("gameplay_ui",
-                "GOLD_TRANSFER.PLAYER_NAME_AND_GOLD");
+            string playerName = PlatformUtil.GetPlayerNameRaw(RunManager.Instance.NetService.Platform, p.NetId);
+            LocString locString = new LocString("gameplay_ui", "GOLD_TRANSFER.PLAYER_NAME_AND_GOLD");
             locString.Add("playerName", playerName);
             locString.Add("amount", p.Gold);
             vbox.AddChild(Buttons.MakePlayerButton(locString.GetFormattedText(), toPlayer =>

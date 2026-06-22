@@ -57,6 +57,18 @@ public static class Buttons
         return cancelBtn;
     }
 
+    public static Button MakeConfirmButton(CanvasLayer layer, Action onConfirm)
+    {
+        Button confirmBtn = MakeButton(new LocString("gameplay_ui", "GOLD_TRANSFER.CONFIRM_BUTTON").GetFormattedText(), Colors.Confirm);
+        confirmBtn.Pressed += () =>
+        {
+            layer.QueueFree();
+            onConfirm();
+        };
+        
+        return confirmBtn;
+    }
+
     private static Button MakeButton(
         string text,
         Color bgColor,

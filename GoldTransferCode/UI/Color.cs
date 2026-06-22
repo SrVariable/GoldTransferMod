@@ -12,4 +12,6 @@ public static class Colors
     public static readonly Color Cancel = new(0.55f, 0.15f, 0.15f);
     public static readonly Color Text = new(1f, 1f, 1f);
     public static readonly Color SendBtn = new(0.231f, 0.565f, 0.584f);
+    public static readonly Color Muted = new(0.60f, 0.60f, 0.60f);
+    public static readonly Color Confirm = new(0.20f, 0.60f, 0.20f);
 }
